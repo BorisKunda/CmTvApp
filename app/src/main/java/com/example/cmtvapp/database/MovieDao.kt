@@ -14,7 +14,7 @@ interface MovieDao {
     suspend fun insert(movie: Movie)
 
     @Query("SELECT * from favourites_table")
-    fun getFavoritesMoviesListLd(): LiveData<List<Movie>>
+    suspend fun getFavoritesMoviesList(): List<Movie>
 
     /**mock*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)

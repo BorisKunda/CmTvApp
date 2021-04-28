@@ -47,7 +47,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     /**local*/
 
     fun loadFavouriteMovies() {
-          movieRepository.movieDao.getFavoritesMoviesListLd().value
+
+        viewModelScope.launch {
+            moviesListMld.value = movieRepository.movieDao.getFavoritesMoviesList()
+        }
+
     }
 
     /**mock*/
