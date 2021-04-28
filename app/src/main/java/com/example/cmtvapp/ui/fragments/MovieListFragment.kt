@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.cmtvapp.R
+import com.example.cmtvapp.utils.UtilMethods
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
 
@@ -26,7 +27,11 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieViewModel.loadPopularMovies()
+        movieViewModel.getPopularMovies().observe(viewLifecycleOwner, {
+
+
+
+        })
 
     }
 

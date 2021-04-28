@@ -2,28 +2,28 @@ package com.example.cmtvapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.repository.MovieRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val scopeVm: CoroutineScope
     private val movieRepository: MovieRepository
 
     init {
 
-        scopeVm = viewModelScope
         movieRepository = MovieRepository.getRepoInstance(application)
 
     }
 
-    fun loadPopularMovies() {
+    /**remote*/
 
-        scopeVm.launch {
-            movieRepository.getPopularMovies()
-        }
+    fun getPopularMovies(): LiveData<List<Movie>> = liveData {
+        emit(movieRepository.loadPopularMovies())
+    }
+
+    fun getLatestMovies(): LiveData<List<Movie>> = liveData {
 
     }
 
