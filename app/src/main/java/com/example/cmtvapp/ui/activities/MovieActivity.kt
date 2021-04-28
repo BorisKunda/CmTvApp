@@ -1,9 +1,10 @@
 package com.example.cmtvapp.ui.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cmtvapp.R
 import com.example.cmtvapp.ui.fragments.MovieListFragment
 import com.example.cmtvapp.viewmodel.MovieViewModel
@@ -17,8 +18,34 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment()).commit()
-
+        supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment())
+            .commit()
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_movies, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_popular -> {
+                movieViewModel.getPopularMovies()
+                return true
+            }
+
+            R.id.item_latest -> {
+                movieViewModel.getLatestMovies()
+                return true
+            }
+            R.id.item_favourites -> {
+                movieViewModel.getFavoriteMovies()
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

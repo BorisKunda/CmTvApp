@@ -1,6 +1,6 @@
 Todo
 dark mode
-
+choose how make favourite and how display details
 ----
 
 //example api calls:

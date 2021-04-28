@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CmTvApp</string>
-    <string name="long_title">Birdman Or (The Unexpected Virtue Of Ignorance)</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet molestie dui eu dictum. </string>
+    <string name="menu_item_popular">Popular</string>
+    <string name="menu_item_latest">Latest</string>
+    <string name="menu_item_favourites">Favourites</string>
 </resources>

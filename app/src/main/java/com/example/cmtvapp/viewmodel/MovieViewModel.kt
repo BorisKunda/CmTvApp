@@ -15,9 +15,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         movieRepository = MovieRepository.getRepoInstance(application)
+        insertMockFavourites()
     }
 
     /**remote*/
+
     fun getPopularMovies(): LiveData<List<Movie>> {
         return liveData<List<Movie>> {
             emit(movieRepository.loadMovies(MovieRepository.TMDB_RESULTS_TYPE.POPULAR))
@@ -29,31 +31,35 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**local*/
+
     fun getFavoriteMovies(): LiveData<List<Movie>> =
         movieRepository.movieDao.getFavoritesMoviesListLd()
 
-    //----------------------mock-----------------------------------------------
+    /**mock*/
+    fun insertMockFavourites() {
 
-    fun mock() {
         viewModelScope.launch {
-            /**mock favourites*/
-            val m1 = Movie("title", "/prdCmV8GkDLpguwoxBQczFAwvci.jpg", "good movie")
-            val m2 = Movie("title2", "/4qDIb9K9qLxCVT8cKGt5YrF54Xb.jpg", "good movie")
-            val m3 = Movie("title3", "/bFPGWSo1FRa5v4M1gJ3Ur95conX.jpg", "good movie")
-            val list: List<Movie> = listOf(
+
+            val m1 = Movie("title", "/prdCmV8GkDLpguwoxBQczFAwvci.jpg", "good movie1")
+            val m2 = Movie("title2", "/4qDIb9K9qLxCVT8cKGt5YrF54Xb.jpg", "good movie2")
+            val m3 = Movie("title3", "/bFPGWSo1FRa5v4M1gJ3Ur95conX.jpg", "good movie3")
+            val mockMovieList: List<Movie> = listOf(
                 m1,
                 m2,
                 m3
             )
-            val m4 = Movie("alien", "/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg", "good movie")
-            //movieRepository.movieDao.insert(m4)
-            //insertFavourites(list)
+
+            movieRepository.movieDao.insertMockFavouritesAll(mockMovieList)
+
         }
+
     }
 
-    /**--mock--*/
-    suspend fun insertFavourites(list: List<Movie>) {
-        movieRepository.movieDao.insertAll(list)
+    fun insertMockFavouriteMovie() {
+        viewModelScope.launch {
+            val mockMovie = Movie("title4", "/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg", "good movie 4")
+            movieRepository.movieDao.insert(mockMovie)
+        }
     }
 
 }

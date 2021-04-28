@@ -37,8 +37,11 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
         val titleTv: TextView = itemView.findViewById(R.id.movie_title_tv)
         val posterIv: ImageView = itemView.findViewById(R.id.movie_poster_iv)
-        val starIv: ImageView = itemView.findViewById(R.id.star_iv)
 
+    }
+
+    interface OnRVItemClickListener {
+        fun onRVItemClick(movie: Movie)
     }
 
 }

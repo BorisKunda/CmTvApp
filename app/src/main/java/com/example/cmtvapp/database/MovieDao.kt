@@ -16,9 +16,8 @@ interface MovieDao {
     @Query("SELECT * from favourites_table")
     fun getFavoritesMoviesListLd(): LiveData<List<Movie>>
 
-    //todo this is mock method - remove
     /**mock*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(moviesList: List<Movie>)
+    suspend fun insertMockFavouritesAll(moviesList: List<Movie>)
 
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cmtvapp.R
@@ -33,21 +34,17 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+     // movieViewModel.getFavoriteMovies().observe(viewLifecycleOwner, {
 
+     //     movieAdapter.movieMList = it.toMutableList()
+     //     movieAdapter.notifyDataSetChanged()
 
-        movieViewModel.getFavoriteMovies().observe(viewLifecycleOwner, {
-
-            movieAdapter.movieMList = it.toMutableList()
-            movieAdapter.notifyDataSetChanged()
-
-        })
+     // })
 
     }
 
     private fun buildUI(view: View) {
-
         setRecyclerView(view)
-
     }
 
     private fun setRecyclerView(view: View) {
@@ -59,6 +56,12 @@ class MovieListFragment : Fragment() {
         moviesListRV.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(view.context)
+            addItemDecoration(
+                DividerItemDecoration(
+                    view.context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             adapter = movieAdapter
         }
 
