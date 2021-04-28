@@ -29,22 +29,41 @@ class MovieRepository private constructor(application: Application) {
 
     }
 
-    suspend fun loadPopularMovies(): List<Movie> {
+    suspend fun loadMovies(tmdbResultsType: TMDB_RESULTS_TYPE): List<Movie> {
 
-        var popularList = emptyList<Movie>()
+        var moviesList = emptyList<Movie>()
+
+        val response: MovieApiResponse
 
         try {
-            val response: MovieApiResponse = movieApiService.getPopularMovies(Constants.API_KEY)
-            UtilMethods.printI("getPopularMovies request success: $response")
-            popularList = response.results
+
+            response = when (tmdbResultsType) {
+
+                TMDB_RESULTS_TYPE.POPULAR -> {
+                    movieApiService.getPopularMovies(Constants.API_KEY)
+                }
+                TMDB_RESULTS_TYPE.LATEST -> {
+                    movieApiService.getLatestMovies(Constants.API_KEY)
+                }
+
+            }
+
+            UtilMethods.printI("success: $response")
+            moviesList = response.results
 
         } catch (exception: Exception) {
-            UtilMethods.printE("getPopularMovies request failure: ${exception.message ?: "error occurred"}")
-
+            UtilMethods.printE("failure: ${exception.message ?: "error occurred"}")
         }
 
-        return popularList
+        return moviesList
 
+    }
+
+    enum class TMDB_RESULTS_TYPE {
+        POPULAR,
+        LATEST
+        //,
+        //FAVORITE
     }
 
 }

@@ -10,5 +10,7 @@ interface MovieApiService {
     @GET(Constants.POPULAR_MOVIES_ENDPOINT)
     suspend fun getPopularMovies(@Query("api_key") apiKey: String): MovieApiResponse
 
+    @GET(Constants.LATEST_MOVIES_ENDPOINT)
+    suspend fun getLatestMovies(@Query("api_key") apiKey: String): MovieApiResponse
 
 }

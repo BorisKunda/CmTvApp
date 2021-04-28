@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cmtvapp.R
 import com.example.cmtvapp.model.Movie
+import com.example.cmtvapp.utils.Constants
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -23,7 +25,8 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         val movie = movieMList[position]
         holder.apply {
             titleTv.text = movie.title
-            //TODO: 4/28/2021 poster+star
+            Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${movie.posterPath}")
+                .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
         }
     }
 

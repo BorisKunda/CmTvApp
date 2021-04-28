@@ -1,2 +1,10 @@
+Todo
 dark mode
-bad scenario retrofit
+
+----
+
+//example api calls:
+https://api.themoviedb.org/3/movie/now_playing?api_key=2c46288716a18fb7aadcc2a801f3fc6b
+https://api.themoviedb.org/3/movie/popular?api_key=2c46288716a18fb7aadcc2a801f3fc6b
+https://image.tmdb.org/t/p/w500
+https://image.tmdb.org/t/p/w500/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg

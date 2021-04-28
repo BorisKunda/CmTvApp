@@ -10,7 +10,7 @@ import com.example.cmtvapp.viewmodel.MovieViewModel
 
 class MovieActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
+
     private val movieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +18,7 @@ class MovieActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment()).commit()
+
 
     }
 }
