@@ -1,4 +1,3 @@
 package com.example.cmtvapp.model
 
-class Movie {
-}
+data class Movie(val title: String)
