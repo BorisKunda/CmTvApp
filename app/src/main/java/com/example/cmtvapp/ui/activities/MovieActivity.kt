@@ -31,16 +31,16 @@ class MovieActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_popular -> {
-                movieViewModel.getPopularMovies()
+                movieViewModel.onPopularMenuItemClicked()
                 return true
             }
 
             R.id.item_latest -> {
-                movieViewModel.getLatestMovies()
+                movieViewModel.onLatestMenuItemClicked()
                 return true
             }
             R.id.item_favourites -> {
-                movieViewModel.getFavoriteMovies()
+                movieViewModel.onFavouritesMenuItemClicked()
                 return true
             }
 

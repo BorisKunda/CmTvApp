@@ -34,17 +34,42 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-     // movieViewModel.getFavoriteMovies().observe(viewLifecycleOwner, {
-
-     //     movieAdapter.movieMList = it.toMutableList()
-     //     movieAdapter.notifyDataSetChanged()
-
-     // })
+        movieViewModel.insertMockFavourites()
+        observeLiveData(movieViewModel)
 
     }
 
     private fun buildUI(view: View) {
         setRecyclerView(view)
+    }
+
+
+    private fun observeLiveData(vm: MovieViewModel) {
+
+        /**click events*/
+        vm.popularMenuItemClickSld.observe(viewLifecycleOwner, {//index 3 = league
+            vm.loadPopularMovies()
+        })
+
+        vm.latestMenuItemClickSld.observe(viewLifecycleOwner, {//index 3 = unholy
+            vm.loadLatestMovies()
+        })
+
+        vm.favouriteMenuItemClickSld.observe(viewLifecycleOwner, {
+            vm.loadFavouriteMovies()
+        })
+
+        /**movie list*/
+        vm.moviesListLd.observe(viewLifecycleOwner, {
+
+            movieAdapter.apply {
+                movieMList.clear()
+                movieMList = it.toMutableList()
+                notifyDataSetChanged()
+            }
+
+        })
+
     }
 
     private fun setRecyclerView(view: View) {

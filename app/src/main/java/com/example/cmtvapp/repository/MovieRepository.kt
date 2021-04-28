@@ -32,7 +32,7 @@ class MovieRepository private constructor(application: Application) {
 
     }
 
-    suspend fun loadMovies(tmdbResultsType: TMDB_RESULTS_TYPE): List<Movie> {
+    suspend fun getMovies(tmdbResultsType: TMDB_RESULTS_TYPE): List<Movie> {
 
         var moviesList = emptyList<Movie>()
 
