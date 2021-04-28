@@ -33,7 +33,9 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieViewModel.getPopularMovies().observe(viewLifecycleOwner, {
+
+
+        movieViewModel.getFavoriteMovies().observe(viewLifecycleOwner, {
 
             movieAdapter.movieMList = it.toMutableList()
             movieAdapter.notifyDataSetChanged()

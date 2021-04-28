@@ -3,6 +3,8 @@ package com.example.cmtvapp.repository
 import android.app.Application
 import com.example.cmtvapp.api.MovieApiService
 import com.example.cmtvapp.api.RetrofitBuilder
+import com.example.cmtvapp.database.MovieDao
+import com.example.cmtvapp.database.MovieDatabaseBuilder
 import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.utils.Constants
 import com.example.cmtvapp.utils.UtilMethods
@@ -10,9 +12,11 @@ import com.example.cmtvapp.utils.UtilMethods
 class MovieRepository private constructor(application: Application) {
 
     private val movieApiService: MovieApiService
+    val movieDao: MovieDao
 
     init {
 
+        movieDao = MovieDatabaseBuilder.getMovieDatabase(application).movieDao()
         movieApiService = RetrofitBuilder.movieApiService
 
     }
@@ -43,10 +47,6 @@ class MovieRepository private constructor(application: Application) {
                     movieApiService.getLatestMovies(Constants.API_KEY).results
                 }
 
-                TMDB_RESULTS_TYPE.FAVORITE -> {
-                    emptyList()//todo change to real one
-                }
-
             }
 
             UtilMethods.printI("response: $moviesList")
@@ -61,8 +61,7 @@ class MovieRepository private constructor(application: Application) {
 
     enum class TMDB_RESULTS_TYPE {
         POPULAR,
-        LATEST,
-        FAVORITE
+        LATEST
     }
 
 }
