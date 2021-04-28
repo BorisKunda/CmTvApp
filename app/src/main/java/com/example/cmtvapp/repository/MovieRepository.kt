@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.cmtvapp.api.MovieApiService
 import com.example.cmtvapp.api.RetrofitBuilder
 import com.example.cmtvapp.model.Movie
-import com.example.cmtvapp.model.MovieApiResponse
 import com.example.cmtvapp.utils.Constants
 import com.example.cmtvapp.utils.UtilMethods
 
@@ -33,23 +32,24 @@ class MovieRepository private constructor(application: Application) {
 
         var moviesList = emptyList<Movie>()
 
-        val response: MovieApiResponse
-
         try {
 
-            response = when (tmdbResultsType) {
+            moviesList = when (tmdbResultsType) {
 
                 TMDB_RESULTS_TYPE.POPULAR -> {
-                    movieApiService.getPopularMovies(Constants.API_KEY)
+                    movieApiService.getPopularMovies(Constants.API_KEY).results
                 }
                 TMDB_RESULTS_TYPE.LATEST -> {
-                    movieApiService.getLatestMovies(Constants.API_KEY)
+                    movieApiService.getLatestMovies(Constants.API_KEY).results
+                }
+
+                TMDB_RESULTS_TYPE.FAVORITE -> {
+                    emptyList()//todo change to real one
                 }
 
             }
 
-            UtilMethods.printI("success: $response")
-            moviesList = response.results
+            UtilMethods.printI("response: $moviesList")
 
         } catch (exception: Exception) {
             UtilMethods.printE("failure: ${exception.message ?: "error occurred"}")
@@ -61,9 +61,8 @@ class MovieRepository private constructor(application: Application) {
 
     enum class TMDB_RESULTS_TYPE {
         POPULAR,
-        LATEST
-        //,
-        //FAVORITE
+        LATEST,
+        FAVORITE
     }
 
 }

@@ -18,13 +18,17 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**remote*/
-
     fun getPopularMovies(): LiveData<List<Movie>> = liveData {
         emit(movieRepository.loadMovies(MovieRepository.TMDB_RESULTS_TYPE.POPULAR))
     }
 
     fun getLatestMovies(): LiveData<List<Movie>> = liveData {
         emit(movieRepository.loadMovies(MovieRepository.TMDB_RESULTS_TYPE.LATEST))
+    }
+
+    /**local*/
+    fun getFavoriteMovies(): LiveData<List<Movie>> = liveData {
+        emit(movieRepository.loadMovies(MovieRepository.TMDB_RESULTS_TYPE.FAVORITE))
     }
 
 }
