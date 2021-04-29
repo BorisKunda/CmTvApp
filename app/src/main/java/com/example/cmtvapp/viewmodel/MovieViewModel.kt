@@ -24,7 +24,6 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         movieRepository = MovieRepository.getRepoInstance(application)
-        //insertMockFavourites()
     }
 
     /**remote*/
@@ -55,33 +54,6 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             moviesListMld.value = movieRepository.movieDao.getFavoritesMoviesList()
         }
 
-    }
-
-    /**mock*/
-    fun insertMockFavourites() {
-
-        viewModelScope.launch {
-
-            val m1 = Movie("title", "/prdCmV8GkDLpguwoxBQczFAwvci.jpg", "good movie1")
-            val m2 = Movie("title2", "/4qDIb9K9qLxCVT8cKGt5YrF54Xb.jpg", "good movie2")
-            val m3 = Movie("title3", "/bFPGWSo1FRa5v4M1gJ3Ur95conX.jpg", "good movie3")
-            val mockMovieList: List<Movie> = listOf(
-                m1,
-                m2,
-                m3
-            )
-
-            movieRepository.movieDao.insertMockFavouritesAll(mockMovieList)
-
-        }
-
-    }
-
-    fun insertMockFavouriteMovie() {
-        viewModelScope.launch {
-            val mockMovie = Movie("title4", "/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg", "good movie 4")
-            movieRepository.movieDao.insert(mockMovie)
-        }
     }
 
     fun onPopularMenuItemClicked() {

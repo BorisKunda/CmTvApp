@@ -53,20 +53,20 @@ class MovieDetailsFragment : Fragment() {
 
     }
 
-    private fun observeLiveData(vm: MovieViewModel) {
+   private fun observeLiveData(vm: MovieViewModel) {
 
-        vm.selectedMovieLd.observe(viewLifecycleOwner, {
+       vm.selectedMovieLd.observe(viewLifecycleOwner, {
 
-            //poster
-            Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${it.posterPath}")
-                .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
+           //poster
+           Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${it.posterPath}")
+               .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
 
-            titleTv.text = it.title
+           titleTv.text = it.title
 
-            overviewTv.text = it.overview
+           overviewTv.text = it.overview
 
-        })
+       })
 
-    }
+   }
 
 }

@@ -35,7 +35,6 @@ class MovieListFragment : Fragment(), MovieAdapter.OnRVItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieViewModel.insertMockFavourites()
         observeLiveData(movieViewModel)
 
     }

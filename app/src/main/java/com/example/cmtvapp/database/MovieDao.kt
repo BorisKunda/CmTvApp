@@ -1,6 +1,5 @@
 package com.example.cmtvapp.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,9 +14,5 @@ interface MovieDao {
 
     @Query("SELECT * from favourites_table")
     suspend fun getFavoritesMoviesList(): List<Movie>
-
-    /**mock*/
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMockFavouritesAll(moviesList: List<Movie>)
 
 }
