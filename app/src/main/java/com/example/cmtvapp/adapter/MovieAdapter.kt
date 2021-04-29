@@ -10,8 +10,9 @@ import com.bumptech.glide.Glide
 import com.example.cmtvapp.R
 import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.utils.Constants
+import com.example.cmtvapp.utils.UtilMethods
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val onRVItemClickListener: OnRVItemClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     var movieMList: MutableList<Movie> = mutableListOf()
 
@@ -27,6 +28,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             titleTv.text = movie.title
             Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${movie.posterPath}")
                 .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
+            //click listener
+            itemView.setOnClickListener {
+                onRVItemClickListener.onRVItemClick(movie)
+            }
         }
     }
 

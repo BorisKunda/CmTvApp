@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CmTvApp</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet molestie dui eu dictum. </string>
+    <string name="lorem_ipsum_short">Lorem ipsum</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacus risus, rutrum a risus ac, malesuada sagittis dolor. Maecenas arcu nunc, ornare vitae placerat id, luctus non tortor. Maecenas cursus enim odio, ut elementum dolor semper sit amet. Cras ac augue fermentum, interdum nulla et, iaculis sem. Vestibulum sodales enim sit amet nisi ullamcorper fermentum. Aliquam tincidunt facilisis risus, ac venenatis libero ullamcorper eu. Integer egestas erat sit amet mollis eleifend. Pellentesque aliquam lectus vitae nunc varius sollicitudin. Duis vehicula ante quis nibh feugiat, id accumsan justo tempus. Donec ac volutpat lacus, sit amet laoreet mauris. Ut non odio venenatis nunc tincidunt varius. Morbi interdum dictum consectetur.</string>
     <string name="menu_item_popular">Popular</string>
     <string name="menu_item_latest">Latest</string>
     <string name="menu_item_favourites">Favourites</string>

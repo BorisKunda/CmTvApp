@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cmtvapp.R
+import com.example.cmtvapp.ui.fragments.MovieDetailsFragment
 import com.example.cmtvapp.ui.fragments.MovieListFragment
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
@@ -21,7 +22,19 @@ class MovieActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment())
             .commit()
 
+        observeLiveData(movieViewModel)
+
     }
+
+    private fun observeLiveData(vm: MovieViewModel) {
+
+        movieViewModel.openMovieDetailsScreenSld.observe(this, {
+            openMovieDetailsScreen()
+        })
+
+    }
+
+    /**menu*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_movies, menu)
@@ -46,6 +59,14 @@ class MovieActivity : AppCompatActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    /**navigation*/
+
+    fun openMovieDetailsScreen() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fr_container_ll, MovieDetailsFragment()).addToBackStack("details_screen_fragment")
+            .commit()
     }
 
 }

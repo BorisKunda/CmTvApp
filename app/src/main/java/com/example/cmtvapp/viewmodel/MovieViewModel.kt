@@ -15,13 +15,16 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     private val movieRepository: MovieRepository
     var moviesListMld: MutableLiveData<List<Movie>> = MutableLiveData()
     var moviesListLd: LiveData<List<Movie>> = moviesListMld
+    val selectedMovieMld: MutableLiveData<Movie> = MutableLiveData()
+    val selectedMovieLd: LiveData<Movie> = selectedMovieMld
     val popularMenuItemClickSld: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val latestMenuItemClickSld: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val favouriteMenuItemClickSld: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val openMovieDetailsScreenSld: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     init {
         movieRepository = MovieRepository.getRepoInstance(application)
-        insertMockFavourites()
+        //insertMockFavourites()
     }
 
     /**remote*/

@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cmtvapp.R
 import com.example.cmtvapp.adapter.MovieAdapter
+import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
 
-class MovieListFragment : Fragment() {
+class MovieListFragment : Fragment(), MovieAdapter.OnRVItemClickListener {
 
     private val movieViewModel: MovieViewModel by activityViewModels()
     private lateinit var moviesListRV: RecyclerView
@@ -74,7 +75,7 @@ class MovieListFragment : Fragment() {
 
     private fun setRecyclerView(view: View) {
 
-        movieAdapter = MovieAdapter()
+        movieAdapter = MovieAdapter(this)
 
         moviesListRV = view.findViewById(R.id.movies_list_rv)
 
@@ -88,6 +89,15 @@ class MovieListFragment : Fragment() {
                 )
             )
             adapter = movieAdapter
+        }
+
+    }
+
+    override fun onRVItemClick(movie: Movie) {
+
+        movieViewModel.apply {
+            selectedMovieMld.value = movie
+            openMovieDetailsScreenSld.call()
         }
 
     }
