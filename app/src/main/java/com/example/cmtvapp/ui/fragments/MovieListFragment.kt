@@ -35,6 +35,8 @@ class MovieListFragment : Fragment(), MovieAdapter.OnRVItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //default
+        movieViewModel.loadPopularMovies()
         observeLiveData(movieViewModel)
 
     }

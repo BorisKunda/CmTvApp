@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.cmtvapp.R
 import com.example.cmtvapp.ui.fragments.MovieDetailsFragment
 import com.example.cmtvapp.ui.fragments.MovieListFragment
@@ -18,6 +19,8 @@ class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment())
             .commit()
