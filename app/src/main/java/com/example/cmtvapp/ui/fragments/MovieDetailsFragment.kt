@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.cmtvapp.R
 import com.example.cmtvapp.utils.Constants
+import com.example.cmtvapp.utils.UtilMethods
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
 
@@ -20,6 +22,7 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var posterIv: ImageView
     private lateinit var titleTv: TextView
     private lateinit var overviewTv: TextView
+    private lateinit var starBtnIv: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,23 +53,37 @@ class MovieDetailsFragment : Fragment() {
         posterIv = view.findViewById(R.id.movie_details_poster_iv)
         titleTv = view.findViewById(R.id.movie_details_title_tv)
         overviewTv = view.findViewById(R.id.movie_details_overview_tv)
+        starBtnIv = view.findViewById(R.id.star_btn_iv)
 
     }
 
-   private fun observeLiveData(vm: MovieViewModel) {
+    private fun observeLiveData(vm: MovieViewModel) {
 
-       vm.selectedMovieLd.observe(viewLifecycleOwner, {
+        vm.selectedMovieLd.observe(viewLifecycleOwner, {
 
-           //poster
-           Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${it.posterPath}")
-               .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
+            val movie = it
 
-           titleTv.text = it.title
+            //poster
+            Glide.with(posterIv.context).load("${Constants.POSTER_BASE_PATH}${movie.posterPath}")
+                .placeholder(R.drawable.ic_image_place_holder).into(posterIv)
 
-           overviewTv.text = it.overview
+            titleTv.text = movie.title
 
-       })
+            overviewTv.text = movie.overview
 
-   }
+            starBtnIv.setOnClickListener {
+
+                //todo flow - check if already favourite
+                //todo flow - remove from favourites
+
+                Toast.makeText(activity, "Added to favourites",Toast.LENGTH_SHORT).show()
+                starBtnIv.setImageResource(R.drawable.ic_star)
+                movieViewModel.addToFavourites(movie)
+
+            }
+
+        })
+
+    }
 
 }

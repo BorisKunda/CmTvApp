@@ -56,6 +56,16 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    fun addToFavourites(movie: Movie) {
+
+        viewModelScope.launch {
+            movieRepository.movieDao.insert(movie)
+        }
+
+    }
+
+    /**click events*/
+
     fun onPopularMenuItemClicked() {
         popularMenuItemClickSld.call()
     }

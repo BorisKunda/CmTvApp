@@ -14,27 +14,36 @@
         android:src="@drawable/ic_image_place_holder" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="center_horizontal"
-            tools:text="@string/lorem_ipsum_short"
             android:id="@+id/movie_details_title_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:text="@string/lorem_ipsum_short" />
 
         <TextView
-            android:padding="8dp"
-            android:layout_marginTop="10dp"
-            tools:text="@string/lorem_ipsum_long"
             android:id="@+id/movie_details_overview_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
+            tools:text="@string/lorem_ipsum_long" />
+
+        <ImageView
+            style="?android:borderlessButtonStyle"
+            android:id="@+id/star_btn_iv"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_empty_star"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
 
     </LinearLayout>
 
