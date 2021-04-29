@@ -12,7 +12,6 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.cmtvapp.R
 import com.example.cmtvapp.utils.Constants
-import com.example.cmtvapp.utils.UtilMethods
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
 
@@ -77,8 +76,6 @@ class MovieDetailsFragment : Fragment() {
             }
 
             starBtnIv.setOnClickListener {
-
-                UtilMethods.printI("add to favourites click")
 
                 if (!movie.isFavourite) {
                     Toast.makeText(activity, "Added to favourites", Toast.LENGTH_SHORT).show()

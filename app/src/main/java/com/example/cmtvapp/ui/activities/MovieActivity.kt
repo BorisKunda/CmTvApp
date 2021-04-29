@@ -44,8 +44,6 @@ class MovieActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
-        UtilMethods.printI("inv")
-
         return if (!shouldHideMenu) {
             menuInflater.inflate(R.menu.menu_movies, menu)
             true
