@@ -79,11 +79,14 @@ class MovieDetailsFragment : Fragment() {
 
             starBtnIv.setOnClickListener {
 
+                UtilMethods.printI("add to favourites click")
+
                 if (!movie.isFavourite) {
                     Toast.makeText(activity, "Added to favourites", Toast.LENGTH_SHORT).show()
                     starBtnIv.setImageResource(R.drawable.ic_star)
                     movie.isFavourite = true
                     movieViewModel.addToFavourites(movie)
+                    starBtnIv.isEnabled = false
                 }
 
             }
