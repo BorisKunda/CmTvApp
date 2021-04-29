@@ -12,5 +12,5 @@ data class Movie(
     @NonNull
     val title: String,
     @SerializedName("poster_path") val posterPath: String,
-    val overview: String
+    val overview: String, var isFavourite: Boolean
 )

@@ -71,14 +71,20 @@ class MovieDetailsFragment : Fragment() {
 
             overviewTv.text = movie.overview
 
+            if (movie.isFavourite) {
+                starBtnIv.setImageResource(R.drawable.ic_star)
+                starBtnIv.alpha = 0.5f
+                starBtnIv.isEnabled = false
+            }
+
             starBtnIv.setOnClickListener {
 
-                //todo flow - check if already favourite
-                //todo flow - remove from favourites
-
-                Toast.makeText(activity, "Added to favourites",Toast.LENGTH_SHORT).show()
-                starBtnIv.setImageResource(R.drawable.ic_star)
-                movieViewModel.addToFavourites(movie)
+                if (!movie.isFavourite) {
+                    Toast.makeText(activity, "Added to favourites", Toast.LENGTH_SHORT).show()
+                    starBtnIv.setImageResource(R.drawable.ic_star)
+                    movie.isFavourite = true
+                    movieViewModel.addToFavourites(movie)
+                }
 
             }
 
