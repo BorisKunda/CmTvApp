@@ -9,18 +9,21 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.cmtvapp.R
 import com.example.cmtvapp.ui.fragments.MovieDetailsFragment
 import com.example.cmtvapp.ui.fragments.MovieListFragment
+import com.example.cmtvapp.utils.UtilMethods
 import com.example.cmtvapp.viewmodel.MovieViewModel
 
 class MovieActivity : AppCompatActivity() {
 
-
     private val movieViewModel: MovieViewModel by viewModels()
+    private var shouldHideMenu = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         supportFragmentManager.beginTransaction().replace(R.id.fr_container_ll, MovieListFragment())
             .commit()
@@ -40,8 +43,15 @@ class MovieActivity : AppCompatActivity() {
     /**menu*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_movies, menu)
-        return true
+
+        UtilMethods.printI("inv")
+
+        return if (!shouldHideMenu) {
+            menuInflater.inflate(R.menu.menu_movies, menu)
+            true
+        } else {
+            false
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,10 +77,29 @@ class MovieActivity : AppCompatActivity() {
     /**navigation*/
 
     fun openMovieDetailsScreen() {
+
+        shouldHideMenu = true
+
+        invalidateOptionsMenu()
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fr_container_ll, MovieDetailsFragment())
             .addToBackStack("details_screen_fragment")
             .commit()
+    }
+
+    override fun onBackPressed() {
+
+        val count = supportFragmentManager.backStackEntryCount
+
+        if (count == 0) {
+            super.onBackPressed()
+        } else {
+            shouldHideMenu = false
+            invalidateOptionsMenu()
+            supportFragmentManager.popBackStack()
+        }
+
     }
 
 }
