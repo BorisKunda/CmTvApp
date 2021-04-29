@@ -20,12 +20,14 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
             android:id="@+id/movie_details_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             tools:text="@string/lorem_ipsum_short" />
 
         <TextView
@@ -33,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:padding="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             tools:text="@string/lorem_ipsum_long" />
 
         <ImageView

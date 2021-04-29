@@ -15,7 +15,4 @@ interface MovieDao {
     @Query("SELECT * from favourites_table")
     suspend fun getFavoritesMoviesList(): List<Movie>
 
-    @Query("SELECT EXISTS(SELECT * FROM favourites_table WHERE title = :movieTitle)")
-    suspend fun doesMovieExists(movieTitle: String): Boolean
-
 }

@@ -68,7 +68,8 @@ class MovieActivity : AppCompatActivity() {
 
     fun openMovieDetailsScreen() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fr_container_ll, MovieDetailsFragment()).addToBackStack("details_screen_fragment")
+            .replace(R.id.fr_container_ll, MovieDetailsFragment())
+            .addToBackStack("details_screen_fragment")
             .commit()
     }
 

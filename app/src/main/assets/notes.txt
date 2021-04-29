@@ -1,2 +1,4 @@
-
+menu bug
+star bug
+default list
 

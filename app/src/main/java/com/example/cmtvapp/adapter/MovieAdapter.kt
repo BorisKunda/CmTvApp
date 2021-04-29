@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide
 import com.example.cmtvapp.R
 import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.utils.Constants
-import com.example.cmtvapp.utils.UtilMethods
 
-class MovieAdapter(private val onRVItemClickListener: OnRVItemClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val onRVItemClickListener: OnRVItemClickListener) :
+    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     var movieMList: MutableList<Movie> = mutableListOf()
 

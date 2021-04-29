@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.cmtvapp.model.Movie
 import com.example.cmtvapp.repository.MovieRepository
 import com.example.cmtvapp.utils.SingleLiveEvent
-import com.example.cmtvapp.utils.UtilMethods
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
